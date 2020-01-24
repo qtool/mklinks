@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Make Links</title>
+  <meta charset="UTF-8">
+</head>
+<style>
+  body,
+  html {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    height: 100%;
+    display: grid;
+  }
+
+  .box {
+    max-width: 800px;
+    margin: 50px auto auto auto;
+  }
+</style>
+
+<body>
+
+  <div class='box'>
+    <textarea id='text' cols=70" rows="20"></textarea>
+    <div>
+      <button id='gen' onclick="generate();">Generate</button>
+    </div>
+  </div>
+  <div class='box'>
+    <div>
+      <ul id='list'></ul>
+    </div>
+  </div>
+
+</body>
+
+<script>
+  function generate() {
+    // get relevant elements
+    const text = document.getElementById('text');
+    const list = document.getElementById('list');
+
+    // parse links from text area
+    const links = text.value.split('\n');
+
+    // remove all elements from list
+    while (list.firstChild) list.removeChild(list.firstChild);
+
+    // add each link to the list
+    for (const link of links) {
+      const a = document.createElement("a");
+
+      a.href = link;
+      // get filename from url
+      a.textContent = link.split('\\').pop().split('/').pop();
+
+      const item = document.createElement("li");
+      item.appendChild(a);
+      list.appendChild(item);
+    }
+
+  }
+</script>
+
+</html>
