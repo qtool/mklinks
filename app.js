@@ -12,12 +12,14 @@ document.getElementById("gen-links").addEventListener(
 
     for (const link of links) {
 
-      const filename = link.split('\\').pop().split('/').pop();
-
-      const row = document.createElement('tr');
-      row.innerHTML = `<td><a href="${link}">${filename}</a></td>`
-
-      list.appendChild(row);
+      if (link) {
+        const filename = link.split('\\').pop().split('/').pop();
+  
+        const row = document.createElement('tr');
+        row.innerHTML = `<td><a href="${link}">${filename}</a></td>`
+  
+        list.appendChild(row);
+      }
 
     }
 
