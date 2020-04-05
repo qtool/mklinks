@@ -1,67 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <title>Make Links</title>
   <meta charset="UTF-8">
-</head>
-<style>
-  body,
-  html {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    height: 100%;
-    display: grid;
-  }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Links from Text</title>
 
-  .box {
-    max-width: 800px;
-    margin: 50px auto auto auto;
-  }
-</style>
+  <link rel="stylesheet" href="styles.css">
+</head>
 
 <body>
-
-  <div class='box'>
-    <textarea cols="70" rows="20"></textarea>
-    <div>
-      <button id='gen' onclick="generate();">Generate Links</button>
+  <div id="app">
+    <div id="entry-box">
+      <textarea id="entry" placeholder="Paste links here, then click Generate Links below"></textarea>
     </div>
-  </div>
-  <div class='box'>
-    <div>
-      <ul id='list'></ul>
+    <div id="toolbar">
+      <button id="gen-links">Generate Links</button>
     </div>
+    <table id="list">
+    </table>
   </div>
-
 </body>
-
-<script>
-  function generate() {
-    // get relevant elements
-    const text = document.getElementById('text');
-    const list = document.getElementById('list');
-
-    // parse links from text area
-    const links = text.value.split('\n');
-
-    // remove all elements from list
-    while (list.firstChild) list.removeChild(list.firstChild);
-
-    // add each link to the list
-    for (const link of links) {
-      const a = document.createElement("a");
-
-      a.href = link;
-      // get filename from url
-      a.textContent = link.split('\\').pop().split('/').pop();
-
-      const item = document.createElement("li");
-      item.appendChild(a);
-      list.appendChild(item);
-    }
-
-  }
-</script>
+<script src="app.js" type="text/javascript"></script>
 
 </html>
